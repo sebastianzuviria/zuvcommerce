@@ -1,8 +1,8 @@
 import { useState, createContext, useContext } from 'react'
 import { GithubAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
-import { auth } from '../services/firebase';
-import { createUser, updateUser } from '../services/firebase/firestore/users';
+import { auth } from 'services/firebase';
+import { createUser, updateUser } from 'services/firebase/firestore/users';
 
 import { useNavigate } from 'react-router-dom';
 

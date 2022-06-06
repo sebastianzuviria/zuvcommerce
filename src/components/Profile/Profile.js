@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react' 
 import { Text, Flex, Input, Button } from "@chakra-ui/react"
-import { useAuth } from "../../context/AuthContext"
+import { useAuth } from "context/AuthContext"
 
 const Profile = () => {
     const [name, setName] = useState('')

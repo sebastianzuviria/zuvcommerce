@@ -10,11 +10,12 @@ import {
     Button
   } from '@chakra-ui/react';
   import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
-import AddToCart from '../AddToCart/AddToCart';
+import AddToCart from 'components/AddToCart/AddToCart';
 
 import { useNavigate } from 'react-router-dom'
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from 'context/AuthContext';
+import { useCart } from 'context/CartContext';
   
 
 const Rating = ({ rating = 4.2, numReviews = 36 }) => {
@@ -53,9 +54,12 @@ const Rating = ({ rating = 4.2, numReviews = 36 }) => {
     const navigate = useNavigate()
 
     const { user } = useAuth()
+    const { addItem } = useCart()
 
-    const handleAddToCart = (number) => {
-        setQuantity(number)
+    const handleAddToCart = (quantity) => {
+        setQuantity(quantity)
+
+        addItem({ id, name, price, quantity })
     }
 
     return (
