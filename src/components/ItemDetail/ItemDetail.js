@@ -54,7 +54,9 @@ const Rating = ({ rating = 4.2, numReviews = 36 }) => {
     const navigate = useNavigate()
 
     const { user } = useAuth()
-    const { addItem } = useCart()
+    const { addItem, getProductQuantity } = useCart()
+
+    const prodQuantity = getProductQuantity(id)
 
     const handleAddToCart = (quantity) => {
         setQuantity(quantity)
@@ -126,7 +128,9 @@ const Rating = ({ rating = 4.2, numReviews = 36 }) => {
                                 </Button>
                             :   quantity > 0 
                                     ?   <Text>You added {quantity} {name}</Text>
-                                    :   <AddToCart stock={stock} onAdd={handleAddToCart}/>
+                                    :   stock > 0
+                                        ?   <AddToCart initial={prodQuantity} stock={stock} onAdd={handleAddToCart}/>
+                                        :   <Text fontWeight={400} fontSize={'2xl'}>Out of stock </Text>
                         }
                     </Flex>
             

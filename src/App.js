@@ -12,13 +12,13 @@ import Layout from 'components/Layout/Layout'
 const App = () => (
   <ChakraProvider resetCSS>
     <BrowserRouter>
-      <AuthProvider>
-        <CartProvider>
+      <CartProvider>
+        <AuthProvider>
           <Layout>
             <AppRouter />
           </Layout>
-        </CartProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </CartProvider>
     </BrowserRouter>
   </ChakraProvider>
 )

@@ -1,8 +1,10 @@
 import { useState, createContext, useContext } from 'react'
 import { GithubAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
+import { useCart } from 'context/CartContext';
+
 import { auth } from 'services/firebase';
-import { createUser, updateUser } from 'services/firebase/firestore/users';
+import { useUsers } from 'services/firebase/firestore/users';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -22,6 +24,10 @@ const useProvideAuth = () => {
     const [user, setUser] = useState(null)
 
     const navigate = useNavigate()
+
+    const { clearCart } = useCart()
+
+    const { createUser, updateUser } = useUsers()
 
     const handleUser = async (rawUser) => {
         if(rawUser) {
@@ -65,6 +71,7 @@ const useProvideAuth = () => {
         signOut(auth)
             .then(() => {
                 handleUser(false)
+                clearCart()
                 navigate('/')
             })
     }

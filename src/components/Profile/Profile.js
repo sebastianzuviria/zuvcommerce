@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { Text, Flex, Input, Button } from "@chakra-ui/react"
 import { useAuth } from "context/AuthContext"
 
+import { useNavigate } from 'react-router-dom'
+
 const Profile = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -9,6 +11,8 @@ const Profile = () => {
     const [phone, setPhone] = useState('')
 
     const { user, updateUserData, signout } = useAuth()
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         if(user) {
@@ -75,9 +79,20 @@ const Profile = () => {
                     variant="solid" 
                     size="md" 
                     backgroundColor="#eeeeee"
+                    mb={4}
                     onClick={updateData}
                 >
                     Update data
+                </Button>
+
+                <Button 
+                    variant="solid" 
+                    size="md" 
+                    backgroundColor="#aaffff"
+                    mb={4}
+                    onClick={() => navigate(`/profile/${user.uid}/orders`)}
+                >
+                    Orders
                 </Button>
 
                 <Button 
