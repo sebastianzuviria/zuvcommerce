@@ -63,7 +63,7 @@ export const CartProvider = ({ children }) => {
     }
 
     const getProductQuantity = (id) => {
-        return cart.find(prod => prod.id === id)?.quantity || 0
+        return cart.find(prod => prod.id === id)?.quantity
     }
 
 

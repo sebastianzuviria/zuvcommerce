@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Spinner, Flex } from "@chakra-ui/react"
 
-
-import { getProductById } from 'services/firebase/firestore/products'
+import { useProducts } from "services/firebase/firestore/products"
 
 import ItemDetail from 'components/ItemDetail/ItemDetail'
 
@@ -12,6 +11,8 @@ const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(true)
 
     const { productId } = useParams()
+
+    const { getProductById } = useProducts()
 
     useEffect(() => {
         setLoading(true)
@@ -23,7 +24,7 @@ const ItemDetailContainer = () => {
         }).finally(() => {
             setLoading(false)
         })
-    }, [productId])
+    }, [productId]) //eslint-disable-line
 
     if(loading) {
         return (

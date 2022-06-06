@@ -1,11 +1,14 @@
 import { Text, Spinner, Flex } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 import ItemList from "components/ItemList/ItemList"
-import { getProducts } from "services/firebase/firestore/products"
+
+import { useProducts } from "services/firebase/firestore/products"
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
+
+    const { getProducts } = useProducts()
 
     useEffect(() => {
         getProducts().then(products => {
@@ -15,7 +18,7 @@ const ItemListContainer = () => {
         }).finally(() => {
             setLoading(false)
         })
-    }, [])
+    }, []) //eslint-disable-line
 
     if(loading) {
         return (

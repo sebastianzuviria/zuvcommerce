@@ -55,7 +55,7 @@ const NavBar = () => {
                     ?   <Avatar 
                             name={user.name} 
                             src={user.photoUrl}
-                            onClick={() => navigate('/profile')}
+                            onClick={() => navigate(`/profile/${user.uid}`)}
                             cursor='pointer'
                         />
                     :   <Button 
