@@ -48,7 +48,7 @@ const Rating = ({ rating = 4.2, numReviews = 36 }) => {
     );
   }
   
-  const ItemDetail = ({ id, name, category, price, img, rating, numReviews, isNew, description, stock }) => {
+  const ItemDetail = ({ id, name, category, price, imageUrl, rating, numReviews, isNew, description, stock }) => {
     const [quantity, setQuantity] = useState(0)
 
     const navigate = useNavigate()
@@ -84,7 +84,7 @@ const Rating = ({ rating = 4.2, numReviews = 36 }) => {
                 )}
     
                 <Image
-                    src={img}
+                    src={imageUrl}
                     alt={`Picture of ${name}`}
                     height='100%'
                     roundedTopLeft='lg'

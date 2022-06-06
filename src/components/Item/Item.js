@@ -10,7 +10,7 @@ import {
   } from '@chakra-ui/react';
   import { useNavigate } from 'react-router-dom';
     
-  const Item = ({ id, name, img, category, price}) => {
+  const Item = ({ id, name, imageUrl, category, price}) => {
     const navigate = useNavigate()
 
     return (
@@ -39,7 +39,7 @@ import {
                     pos: 'absolute',
                     top: 5,
                     left: 0,
-                    backgroundImage: `url(${img})`,
+                    backgroundImage: `url(${imageUrl})`,
                     filter: 'blur(15px)',
                     zIndex: -1,
                     }}
@@ -54,7 +54,7 @@ import {
                     height={230}
                     width={282}
                     objectFit={'cover'}
-                    src={img}
+                    src={imageUrl}
                 />
                 </Box>
                 <Stack pt={10} align={'center'}>
