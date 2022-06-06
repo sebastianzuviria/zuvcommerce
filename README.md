@@ -23,3 +23,7 @@ See [`.env.example`](https://github.com/szuviria/zuvcommerce/blob/main/.env.exam
 - [Vercel](https://vercel.com)
 - [Firebase](https://firebase.com)
 - [Chakra UI](https://chakra-ui.com/)
+
+## Test App 
+
+[Deploy](https://zuvcommerce.vercel.app)
