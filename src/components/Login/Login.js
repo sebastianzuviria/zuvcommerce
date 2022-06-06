@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button, Flex, Spinner } from "@chakra-ui/react"
-import { useAuth } from "../../context/AuthContext"
+import { useAuth } from "context/AuthContext"
 
 const Login = () => {
     const [loading, setLoading] = useState(false)

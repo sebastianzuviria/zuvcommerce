@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom'
 import { Spinner, Flex } from "@chakra-ui/react"
 
 
-import { getProductById } from '../../services/firebase/firestore/products'
+import { getProductById } from 'services/firebase/firestore/products'
 
-import ItemDetail from '../ItemDetail/ItemDetail'
+import ItemDetail from 'components/ItemDetail/ItemDetail'
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState(null)
