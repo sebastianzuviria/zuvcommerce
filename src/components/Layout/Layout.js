@@ -2,22 +2,14 @@ import {
     Flex
 } from '@chakra-ui/react'
 
-import NavBar from 'components/NavBar/NavBar'
+import Sidebar from '../Sidebar/Sidebar'
 
 const Layout = ({ children }) => {
     return (
         <Flex height="100%" justifyContent="space-between" flexDirection="column">
-            <NavBar />
-            <Flex 
-            height="90vh" 
-            width="100%" 
-            justifyContent="center"
-            alignItems="center"
-            padding={10}
-            flexDirection="column"
-            >
+            <Sidebar>
                 { children }
-            </Flex>
+            </Sidebar>    
         </Flex>
     )
 }

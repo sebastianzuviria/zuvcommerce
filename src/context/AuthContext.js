@@ -1,5 +1,5 @@
-import { useState, createContext, useContext } from 'react'
-import { GithubAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { useState, useEffect, createContext, useContext } from 'react'
+import { GithubAuthProvider, signInWithPopup, signOut, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
 import { useCart } from 'context/CartContext';
 
@@ -29,11 +29,16 @@ const useProvideAuth = () => {
 
     const { createUser, updateUser } = useUsers()
 
-    const handleUser = async (rawUser) => {
+    const handleUser = async (rawUser, provider) => {
         if(rawUser) {
-            const user = formatUser(rawUser) 
+            const user = formatUser(rawUser, provider) 
             const { token, ...userWithoutToken } = user
-            const createdUser = await createUser(user.uid, userWithoutToken)
+            let createdUser
+            if(provider !== 'password') {
+                createdUser = await createUser(user.uid, userWithoutToken)
+            } else {
+                createdUser = await createUser(user.uid, userWithoutToken.email)
+            }
             setUser(createdUser)
             return user
         } else {
@@ -42,16 +47,28 @@ const useProvideAuth = () => {
         }
     }
 
-    const signinWithGithub = async () => {
+    const signin = (email, password, callback) => {
+        return signInWithEmailAndPassword(auth, email, password)
+            .then(async (userCredential) => {
+                const user = userCredential.user;
+                const userData = await handleUser(user)
+                callback()
+                return userData
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
+
+    const signinWithGithub = async (callback) => {
         const provider = new GithubAuthProvider()
 
         signInWithPopup(auth, provider)
-            .then((userCredencial) => {
-                const user = userCredencial.user     
-                return handleUser(user)
-            })
-            .then(() => {
-                navigate('/')
+            .then(async (userCredencial) => {
+                const user = userCredencial.user 
+                const userData = await handleUser(user)  
+                callback()
+                return userData
             })
             .catch(error => {
                 console.log(error)
@@ -76,8 +93,15 @@ const useProvideAuth = () => {
             })
     }
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, handleUser)
+
+        return () => unsubscribe()
+    }, []) //eslint-disable-line
+
     return {
         user,
+        signin,
         signinWithGithub,
         updateUserData,
         signout

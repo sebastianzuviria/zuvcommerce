@@ -10,7 +10,7 @@ import {
 
   import { useCart } from 'context/CartContext';
     
-  const ItemCart = ({ id, name = 'iphone', quantity = 5, price = 1000}) => {
+  const ItemCart = ({ id, name, quantity, price }) => {
     const navigate = useNavigate()
 
     const { removeItem } = useCart()

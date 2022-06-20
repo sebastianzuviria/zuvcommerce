@@ -5,7 +5,10 @@ import {
     collection,
     where,
     getDoc,
-    doc
+    doc,
+    addDoc,
+    deleteDoc,
+    updateDoc
 } from 'firebase/firestore'
 
 export const useProducts = () => {
@@ -43,8 +46,53 @@ export const useProducts = () => {
         })
     }
 
+    const addProduct = (newProduct) => {
+        return new Promise((resolve, reject) => {
+            const collectionRef = collection(db, 'products')
+
+            addDoc(collectionRef, newProduct)
+                .then(({ id }) => {
+                    resolve(id)
+                })
+                .catch(error => {
+                    reject(error)
+                })
+        })
+    }
+
+    const deleteProduct = (productId) => {
+        return new Promise((resolve, reject) => {
+            const docRef = doc(db, 'products', productId)
+
+            deleteDoc(docRef)
+                .then(() => {
+                    resolve(true)
+                })
+                .catch(error => {
+                    reject(false)
+                })
+        })
+    }
+
+    const editProduct = (productId, newData) => {
+        return new Promise((resolve, reject) => {
+            const docRef = doc(db, 'products', productId)
+
+            updateDoc(docRef, {...newData})
+                .then(() => {
+                    resolve(true)
+                })
+                .catch(error => {
+                    reject(false)
+                })
+        })
+    }
+
     return {
         getProducts,
-        getProductById
+        getProductById,
+        addProduct,
+        deleteProduct,
+        editProduct
     }
 }

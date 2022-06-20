@@ -15,7 +15,7 @@ const CartWidget = () => {
     const { totalProductsAdded } = useCart()
 
     return (
-        <Button variant="solid" size="md" backgroundColor="#aaeeee" onClick={() => navigate('/cart')}>
+        <Button variant="solid" size="md" onClick={() => navigate('/cart')}>
             <Flex justifyContent='center' alignItems='center'>
                 <Icon as={FiShoppingCart} h={5} w={5} alignSelf={'center'} mr={3}/>
                 <Text fontSize='lg'>{ totalProductsAdded }</Text>

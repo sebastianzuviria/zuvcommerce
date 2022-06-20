@@ -17,8 +17,8 @@ const AddToCart = ({ initial = 1, stock = 0, onAdd }) => {
     const [number, setNumber] = useState(initial)
 
     return (
-        <Flex mb={5}>
-            <NumberInput  mr={2} defaultValue={initial} min={1} max={stock} onChange={(valueString) => setNumber(parseInt(valueString))}>
+        <Flex mb={5} height='20%'>
+            <NumberInput  mr={2} defaultValue={initial} min={1} max={stock} onChange={(valueString) => setNumber(parseInt(valueString))} noOfLines={1}>
                 <NumberInputField />
                 <NumberInputStepper>
                     <NumberIncrementStepper />

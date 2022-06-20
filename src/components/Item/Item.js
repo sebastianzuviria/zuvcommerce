@@ -16,15 +16,17 @@ import {
     return (
         <Center py={12} onClick={() => navigate(`/detail/${id}`)} cursor='pointer'>
             <Box
-            role={'group'}
-            p={6}
-            maxW={'330px'}
-            w={'full'}
-            bg={useColorModeValue('white', 'gray.800')}
-            boxShadow={'2xl'}
-            rounded={'lg'}
-            pos={'relative'}
-            zIndex={1}
+                role={'group'}
+                p={6}
+                maxW={'330px'}
+                minW={'280px'}
+                w={'full'}
+                bg={useColorModeValue('white', 'gray.800')}
+                boxShadow={'2xl'}
+                rounded={'lg'}
+                pos={'relative'}
+                zIndex={0}
+                h={375}
             >
                 <Box
                     rounded={'lg'}
@@ -59,10 +61,10 @@ import {
                 </Box>
                 <Stack pt={10} align={'center'}>
                     <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-                    {category}
+                        {category}
                     </Text>
-                    <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-                    {name}
+                    <Heading fontSize={'xl'} fontFamily={'body'} fontWeight={500} h='24px' noOfLines={1}>
+                        {name}
                     </Heading>
                     <Stack direction={'row'} align={'center'}>
                     <Text fontWeight={800} fontSize={'xl'}>
@@ -73,14 +75,6 @@ import {
                     </Text>
                     </Stack>
                 </Stack>
-                {/* <Button 
-                    variant="solid" 
-                    size="md" 
-                    backgroundColor="#eeeee"
-                    // onClick={() => navigate('/login')}
-                >
-                    Detail
-                </Button> */}
             </Box>
         </Center>
     );

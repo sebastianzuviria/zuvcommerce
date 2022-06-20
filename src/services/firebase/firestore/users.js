@@ -14,6 +14,11 @@ export const useUsers = () => {
             const userRef = doc(db, 'users', uid)
             await setDoc(userRef, data, { merge: true })
             const user = await getDoc(userRef)
+            const userData = user.data()
+            if(!userData.role) {
+                updateUser(userData.uid, { role: 'user'})
+            }
+            
             return user.data()
         } catch (error) {
             console.log(error)
@@ -32,7 +37,7 @@ export const useUsers = () => {
     }
 
     return {
-        createUser,
+            createUser,
         updateUser
     }
 }
