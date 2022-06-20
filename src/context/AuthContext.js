@@ -29,11 +29,16 @@ const useProvideAuth = () => {
 
     const { createUser, updateUser } = useUsers()
 
-    const handleUser = async (rawUser) => {
+    const handleUser = async (rawUser, provider) => {
         if(rawUser) {
-            const user = formatUser(rawUser) 
+            const user = formatUser(rawUser, provider) 
             const { token, ...userWithoutToken } = user
-            const createdUser = await createUser(user.uid, userWithoutToken)
+            let createdUser
+            if(provider !== 'password') {
+                createdUser = await createUser(user.uid, userWithoutToken)
+            } else {
+                createdUser = await createUser(user.uid, userWithoutToken.email)
+            }
             setUser(createdUser)
             return user
         } else {
@@ -43,7 +48,7 @@ const useProvideAuth = () => {
     }
 
     const signin = (email, password, callback) => {
-        signInWithEmailAndPassword(auth, email, password)
+        return signInWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
                 const user = userCredential.user;
                 const userData = await handleUser(user)

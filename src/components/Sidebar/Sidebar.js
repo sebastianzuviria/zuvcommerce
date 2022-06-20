@@ -75,9 +75,9 @@ export default function SidebarWithHeader({
       </Drawer>
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} user={user} signout={signout}/>
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Flex ml={{ base: 0, md: 60 }} p="4" justifyContent='center'>
         {children}
-      </Box>
+      </Flex>
     </Box>
   );
 }
@@ -212,7 +212,7 @@ const MobileNav = ({ onOpen, user, signout, ...rest }) => {
                   ml="2">
                   <Text fontSize="sm">{user.name || capitalize(user.email.split('@')[0])}</Text>
                   <Text fontSize="xs" color="gray.600">
-                    {user ? capitalize(user.role) : ''}
+                    {user && user.role ? capitalize(user.role) : ''}
                   </Text>
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>

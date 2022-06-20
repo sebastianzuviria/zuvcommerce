@@ -130,13 +130,13 @@ const ItemForm = () => {
     return (
         <Flex 
             height='100%' 
-            width='100%' 
+            width='70%' 
             flexDirection='column' 
             justifyContent='flex-start' 
             alignItems='center' 
             backgroundColor='#ffffff'
             py={50}
-            px={200}
+            px={50}
         >
             <Text fontSize="2xl" mb={50}>{productId ? 'Edit product' : 'New Product'}</Text>
             <Flex flexDirection="column" width="100%">
@@ -224,27 +224,28 @@ const ItemForm = () => {
                         </NumberInputStepper>
                     </NumberInput>
                 </Flex>
-
-                <Button 
-                    variant="solid" 
-                    size="md" 
-                    backgroundColor="#00c04d"
-                    color='#ffffff'
-                    mb={4}
-                    onClick={productId ? handleEditProduct : handleCreateProduct}
-                >
-                    {productId ? 'Confirm changes' : 'Create Product'}
-                </Button>
-                <Button 
-                    variant="solid" 
-                    size="md" 
-                    mt={10}
-                    backgroundColor="#ff6666"
-                    color='#ffffff'
-                    onClick={() => navigate(-1)}
-                >
-                    Cancel
-                </Button>
+                <Flex flexDirection='column' justifyContent='center' alignItems='center' mt={10}>
+                    <Button 
+                        variant="solid" 
+                        size="md" 
+                        backgroundColor="#00c04d"
+                        color='#ffffff'
+                        m={2}
+                        onClick={productId ? handleEditProduct : handleCreateProduct}
+                    >
+                        {productId ? 'Confirm changes' : 'Create Product'}
+                    </Button>
+                    <Button 
+                        variant="solid" 
+                        size="md" 
+                        backgroundColor="#ff6666"
+                        color='#ffffff'
+                        m={2}
+                        onClick={() => navigate(-1)}
+                    >
+                        Cancel
+                    </Button>
+                </Flex>
             </Flex>
         </Flex>
     )

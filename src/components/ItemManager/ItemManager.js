@@ -20,11 +20,11 @@ const ItemManager = ({ id, name, imageUrl, price, handleDeleteProduct }) => {
 
     const handleRemoveItem = (e) => {
         e.stopPropagation()
-        handleDeleteProduct(id)
+        handleDeleteProduct(id, imageUrl)
     }
 
     return (
-        <Flex width='60vw' onClick={() => navigate(`/detail/${id}`)} cursor='pointer' m={3}>
+        <Flex width='100%' onClick={() => navigate(`/detail/${id}`)} cursor='pointer' m={3}>
             <Box
                 role={'group'}
                 p={6}
@@ -59,7 +59,7 @@ const ItemManager = ({ id, name, imageUrl, price, handleDeleteProduct }) => {
                         <Button 
                                 variant="solid" 
                                 size="md" 
-                                backgroundColor="#99dddd"
+                                backgroundColor="#00d1ff"
                                 color="#ffffff"
                                 mx={1}
                                 onClick={handleEditItem}
@@ -74,7 +74,7 @@ const ItemManager = ({ id, name, imageUrl, price, handleDeleteProduct }) => {
                                 mx={1}
                                 onClick={handleRemoveItem}
                         >
-                                Remove
+                                Delete
                         </Button>
                     </Flex>
                 </Flex>

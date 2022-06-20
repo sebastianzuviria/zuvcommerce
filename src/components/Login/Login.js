@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { Button, Flex, Spinner, Input, Text } from "@chakra-ui/react"
+import { FaGithub } from 'react-icons/fa'
+
 import { useAuth } from "context/AuthContext"
 import { useLocation, useNavigate } from 'react-router-dom'
+
 
 const Login = () => {
     const [userData, setUserData] = useState({
@@ -20,6 +23,10 @@ const Login = () => {
         setLoading(true)
         signinWithGithub(() => {
             navigate(from, { replace: true })
+        }).catch(error => {
+            console.log(error)
+        }).finally(() => {
+            setLoading(false)
         })
     }
 
@@ -27,6 +34,10 @@ const Login = () => {
         setLoading(true)
         signin(userData.email, userData.password, () => {
             navigate(from, { replace: true })
+        }).catch(error => {
+            console.log(error)
+        }).finally(() => {
+            setLoading(false)
         })
     }
 
@@ -39,8 +50,18 @@ const Login = () => {
     }
 
     return (
-        <>
-            <Flex flexDirection="column" width="70%">
+        <Flex 
+            height='100%' 
+            width='100%' 
+            flexDirection='column' 
+            justifyContent='flex-start' 
+            alignItems='center' 
+            backgroundColor='#ffffff'
+            py={50}
+            px={200}
+        >
+            <Text fontSize='2xl'>Login</Text>
+            <Flex flexDirection='column' width='70%'>
                 <Flex width="100%" m={5}>
                     <Text fontSize="xl" width="20vw">
                         E-mail
@@ -60,26 +81,31 @@ const Login = () => {
                         onChange={({ target }) => setUserData({...userData, password: target.value})}
                     />
                 </Flex>
-
+            </Flex>
+            <Flex flexDirection='column'>
                 <Button 
                     variant="solid" 
                     size="md" 
                     backgroundColor="#eeeeee"
-                    mb={4}
+                    my={5}
                     onClick={handleLoginWithEmail}
                 >
                     Login
                 </Button>
+            
+                <Button
+                variant="solid" 
+                size="md" 
+                backgroundColor="#000000"
+                color='#ffffff'
+                my={5}
+                onClick={handleLoginWithGithub}
+                >
+                <FaGithub style={{ marginRight: '10px'}}/>
+                    Login with GitHub
+                </Button>
             </Flex>
-            <Button
-            variant="solid" 
-            size="md" 
-            backgroundColor="#ffffff"
-            onClick={handleLoginWithGithub}
-            >
-                Login with GitHub
-            </Button>
-        </>
+        </Flex>
     )
 }
 
