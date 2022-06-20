@@ -12,7 +12,7 @@ import {
   import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
 import AddToCart from 'components/AddToCart/AddToCart';
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import { useAuth } from 'context/AuthContext';
 import { useCart } from 'context/CartContext';
@@ -52,6 +52,7 @@ const Rating = ({ rating = 4.2, numReviews = 36 }) => {
     const [quantity, setQuantity] = useState(0)
 
     const navigate = useNavigate()
+    const location = useLocation()
 
     const { user } = useAuth()
     const { addItem, getProductQuantity } = useCart()
@@ -109,11 +110,12 @@ const Rating = ({ rating = 4.2, numReviews = 36 }) => {
                     </Box>
                     <Flex mt="1" justifyContent="space-between" alignContent="center">
                         <Box
-                            fontSize="2xl"
+                            fontSize="xl"
                             fontWeight="semibold"
                             as="h4"
                             lineHeight="tight"
                             mb={6}
+                            w='70%'
                         >
                             {name}
                         </Box>
@@ -122,7 +124,7 @@ const Rating = ({ rating = 4.2, numReviews = 36 }) => {
                                     variant="solid" 
                                     size="md" 
                                     backgroundColor="#eeeeee"
-                                    onClick={() => navigate('/login')}
+                                    onClick={() => navigate('/login', { state: { from: location }})}
                                 >
                                     Login and buy
                                 </Button>

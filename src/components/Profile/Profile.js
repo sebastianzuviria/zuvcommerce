@@ -42,7 +42,7 @@ const Profile = () => {
                     <Input 
                         value={name} 
                         onChange={({ target }) => setName(target.value)}
-                        disabled={user?.provider}
+                        disabled={user?.provider !== 'password'}
                         width='100%' 
                     />
                 </Flex>
@@ -53,7 +53,7 @@ const Profile = () => {
                     <Input 
                         value={email}
                         onChange={({ target }) => setEmail(target.value)} 
-                        disabled={user?.provider}
+                        disabled={user?.provider !== 'password'}
                     />
                 </Flex>
                 <Flex width="100%" m={5}>
