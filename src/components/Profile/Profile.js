@@ -103,7 +103,7 @@ const Profile = () => {
                     color='#ffffff'
                     onClick={signout}
                 >
-                    Logout
+                    Sign out
                 </Button>
             </Flex>
         </Flex>
